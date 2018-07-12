@@ -60,7 +60,15 @@ public @interface Module {
 
     /**
      * Specifies the version of this module
+     *
      * @return the version
      */
     String version() default "";
+
+    /**
+     * Returns the dependencies for the given module
+     *
+     * @return the dependencie ids
+     */
+    String[] dependencies() default {};
 }
