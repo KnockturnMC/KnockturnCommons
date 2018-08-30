@@ -150,7 +150,7 @@ public class ModuleLoader<T> {
      * Unloads the modules loaded by this loader
      */
     public void unloadModules() {
-        this.loadedModules.forEach(wrapper -> {
+        this.loadedModules.stream().filter(m -> m.getDescriptor().isReloadable()).forEach(wrapper -> {
             try {
                 unloadModule(wrapper);
             } catch (ModuleLoaderException e) {
@@ -165,7 +165,7 @@ public class ModuleLoader<T> {
      * @param wrapper the module wrapper
      */
     public void unloadModule(ModuleWrapper<T> wrapper) {
-        ClassLoader classLoader = wrapper.getClass().getClassLoader();
+        ClassLoader classLoader = wrapper.getModule().getClass().getClassLoader();
         if (!(classLoader instanceof URLClassLoader)) throw new ModuleLoaderException("Could not unload module " + wrapper.getDescriptor().getName() + " as it does not use an URLClassLoader");
 
         try {

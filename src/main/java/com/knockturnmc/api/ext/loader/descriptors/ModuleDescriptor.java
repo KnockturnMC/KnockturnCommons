@@ -7,6 +7,9 @@ import java.io.File;
 import java.util.Collection;
 import java.util.Optional;
 
+/**
+ * Represents a module descriptor that holds information about the module file found under {@link ModuleDescriptor#getFile()}
+ */
 public interface ModuleDescriptor {
 
     /**

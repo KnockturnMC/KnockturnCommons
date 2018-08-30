@@ -117,7 +117,7 @@ public class ModuleDependenySorter {
                 String moduleID = toID(name);
 
                 IDModuleDescriptor dependency = allModules.get(moduleID);
-                if (dependency == null) throw new ModuleLoaderException("Could not find denendency " + moduleID + " for module " + descriptor.getName());
+                if (dependency == null) throw new ModuleLoaderException("Could not find dependency " + moduleID + " for module " + descriptor.getName());
 
                 this.dependencies.add(dependency);
             });

@@ -1,5 +1,8 @@
 package com.knockturnmc.api.ext.loader.provider;
 
+/**
+ * Defines an instance provider that is used to instantiate the {@link com.knockturnmc.api.ext.Loadable} class
+ */
 public interface InstanceProvider {
 
     /**

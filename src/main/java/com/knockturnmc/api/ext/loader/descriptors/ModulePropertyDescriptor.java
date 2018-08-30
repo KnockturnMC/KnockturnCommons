@@ -5,10 +5,7 @@ import com.knockturnmc.api.ext.loader.ModuleLoaderException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.Properties;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -80,7 +77,9 @@ public class ModulePropertyDescriptor implements ModuleDescriptor {
      */
     @Override
     public Collection<String> getDependencies() {
-        return Arrays.asList(properties.getProperty("dependencies", "").split(","));
+        List<String> dependencies = new ArrayList<>(Arrays.asList(properties.getProperty("dependencies", "").split(",")));
+        dependencies.removeIf(String::isEmpty);
+        return dependencies;
     }
 
     /**
