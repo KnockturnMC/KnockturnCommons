@@ -47,7 +47,7 @@ public class NamedPropertiesTest {
         assertEquals(-69, properties.defaulttest);
         assertEquals("something", properties.test2);
         assertEquals(TimeUnit.DAYS, properties.timeUnit);
-        assertEquals(false, properties.booleantest);
+        assertFalse(properties.booleantest);
         assertEquals(31231232L, properties.someLong);
     }
 
