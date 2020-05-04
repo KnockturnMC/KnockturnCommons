@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.zip.ZipFile;
 
@@ -18,10 +20,18 @@ public class ModuleAnnotationDescriptor implements ModuleDescriptor {
     private String moduleClassName;
 
     private File sourceFile;
+    private Consumer<Class<?>> classObserver;
 
     public ModuleAnnotationDescriptor(File sourceFile) {
+        this(sourceFile, c -> {
+        });
+    }
+
+    public ModuleAnnotationDescriptor(File sourceFile, Consumer<Class<?>> classObserver) {
         if (sourceFile == null) throw new NullPointerException("Source file for module was null!");
         this.sourceFile = sourceFile;
+
+        this.classObserver = classObserver;
     }
 
     /**
@@ -44,6 +54,7 @@ public class ModuleAnnotationDescriptor implements ModuleDescriptor {
                                 return null;
                             }
                         }).filter(Objects::nonNull)
+                        .peek(this.classObserver)
                         .filter(c -> c.isAnnotationPresent(Module.class))
                         .filter(Loadable.class::isAssignableFrom)
                         .collect(Collectors.toCollection(ArrayList::new));
