@@ -6,7 +6,7 @@
 
     <groupId>com.knockturnmc</groupId>
     <artifactId>knockturn-commons</artifactId>
-    <version>1.5.0-SNAPSHOT</version>
+    <version>1.5.0</version>
 
     <name>Knockturn Commons</name>
     <description>Common Utilities</description>
@@ -22,12 +22,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.26</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -54,6 +48,11 @@
             <name>internal snapshots</name>
             <url>https://repo.knockturnmc.com/content/repositories/knockturn-public-snapshot/</url>
         </snapshotRepository>
+        <repository>
+            <id>knockturn-public-release</id>
+            <name>releasees</name>
+            <url>https://repo.knockturnmc.com/content/repositories/knockturn-public-release/</url>
+        </repository>
     </distributionManagement>
 
     <build>
